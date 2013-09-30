@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<head>
+    <meta charset=utf-8>
+    <meta name="description" content="A Google Chrome extension for debugging server side applications in the Chrome console.">
+    <title>Chrome Logger - Server side application debugging</title>
+    <link rel="shortcut icon" type="image/x-icon" href="http://cdn.craig.is/img/favicon/chromelogger.png">
+    <!-- <link href="http://cdn.craig.is/rainbow-themes/tomorrow-night.css?7410f" rel="stylesheet"> -->
+
+    <link href="http://cdn.craig.is/css/chromelogger.css?61156" rel="stylesheet">
+    <!--[if lt IE 9]>
+        <script src="http://cdn.craig.is/js/html5.js?7410f"></script>
+    <![endif]-->
+    <script>
+        var alreaySeen = window.localStorage && window.localStorage.getItem('seen');
+        if (navigator.userAgent.indexOf(' AppleWebKit/') !== -1 && !alreaySeen) {
+            document.documentElement.className = 'intro';
+        }
+    </script>
+</head>
+<body>
+    <a target="_blank" href="https://github.com/ccampbell/chromelogger"><img class="github" src="http://aral.github.com/fork-me-on-github-retina-ribbons/right-graphite@2x.png" alt="Fork me on GitHub"></a>
+
+    <div id="overlay"></div>
+
+    <div id="icon-on" class="icon-wrapper large">
+        <div class="icon"></div>
+        <span class="bracket">&gt;</span>
+    </div>
+
+    <div id="icon-off" class="icon-wrapper large">
+        <div class="icon"></div>
+        <span class="bracket">&gt;</span>
+        <span class="cursor"></span>
+    </div>
+
+    <header>
+        <div id="icon-main" class="icon-wrapper">
+            <div class="icon"></div>
+            <span class="bracket">&gt;</span>
+            <span class="cursor"></span>
+        </div>
+        <h1><a href="">Chrome Logger</a></h1>
+    </header>
+    <article>
+        <h2>About</h2>
+        <p>Chrome Logger is a Google Chrome extension for debugging server side applications in the Chrome console.</p>
+        <p>Most languages include their own logging capabilities, but sometimes it is easier to see your logs right in the browser.</p>
+        <p>Chrome Logger used to be known as ChromePHP.</p>
+
+        <h2>Usage</h2>
+        <p>Using Chrome Logger is simple:</p>
+        <ol>
+            <li>
+                <p><a target="_blank" href="https://chrome.google.com/webstore/detail/chromephp/noaneddfkdjfnfdakjjmocngnfkfehhd">Install</a> the Chrome Logger extension for Google Chrome.</p>
+            </li>
+            <li>
+                <p>Click the extension icon to enable logging for the current tab's domain (It will light up blue).<br>
+                <img class="swap" src="http://cdn.craig.is/img/chromelogger/toggle.png" alt="toggle icon"></p>
+            </li>
+            <li>
+                <p>Install a server side library for your language.</p>
+                <ul>
+                    <li class="first">Python - <a target="_blank" href="http://github.com/ccampbell/chromelogger-python">http://github.com/ccampbell/chromelogger-python</a></li>
+                    <li>PHP - <a target="_blank" href="http://github.com/ccampbell/chromephp">http://github.com/ccampbell/chromephp</a></li>
+                    <li>Ruby - <a target="_blank" href="http://github.com/cookrn/chrome_logger">http://github.com/cookrn/chrome_logger</a></li>
+                    <li>Node.js
+                        <ul>
+                            <li><a target="_blank" href="http://github.com/yannickcr/node-chromelogger">http://github.com/yannickcr/node-chromelogger</a></li>
+                            <li><a target="_blank" href="http://github.com/olahol/express-chrome-logger">http://github.com/olahol/express-chrome-logger</a></li>
+                        </ul>
+                    </li>
+                    <li>.NET - <a target="_blank" href="http://github.com/ChrisMissal/chromelogger">http://github.com/ChrisMissal/chromelogger</a></li>
+                    <li>ColdFusion - <a target="_blank" href="http://github.com/s992/chromelogger-cf">http://github.com/s992/chromelogger-cf</a></li>
+                </ul>
+                <p>Follow the instructions on those pages to get them up and running.</p>
+            </li>
+            <li>
+                <p>Add some log statements</p>
+                <pre class="lang-python">
+                    <code># django example
+import chromelogger as console
+from django.http import HttpResponse
+
+
+def index(request):
+    response = HttpResponse("Hello, world. You're at the poll index.")
+    console.log('Hello console!')
+    console.log(request.user)
+    return response</code>
+                </pre>
+            </li>
+            <li>
+                <p>Check the console!<br>
+                <img class="swap" src="http://cdn.craig.is/img/chromelogger/console.png" alt="animated console"></p>
+            </li>
+        </ol>
+
+        <h2>Configuring</h2>
+        <p>Chrome Logger has a few options.  Right click on the extension icon and select <code>Options</code> to see them<br>
+        <img class="swap" src="http://cdn.craig.is/img/chromelogger/options.png" alt="selecting options"></p>
+
+        <h2>Technical Stuff</h2>
+        <p>Chrome Logger is an open protocol.  Currently there are libraries available for PHP, Python, Ruby, and Node, but there is no reason to be limited to those languages.  Go to <a href="/writing/chromelogger/techspecs">the tech spec</a> to see more information about how to create your own library.</p>
+
+        <h2>Support</h2>
+        <p>If you are having trouble or need help <a href="http://github.com/ccampbell/chromelogger/issues" target="_blank">open up a ticket on GitHub</a>.
+    </article>
+    <footer><p>ChromeLogger was developed by <a href="/">Craig Campbell</a></p></footer>
+    <script src="http://cdn.craig.is/js/rainbow-custom.min.js?71e0f"></script>
+    <script src="http://cdn.craig.is/js/chromelogger.min.js?0f036"></script>
+        <script>
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-7604706-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        }) ();
+    </script>
+</body>
